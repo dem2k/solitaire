@@ -1,0 +1,18 @@
+{
+  "homepage": "https://github.com/dem2k/solitaire",
+  "version": "0.0.0",
+  "license": "freeware",
+  "description": "loremipsum",
+  "suggest": {
+    "JDK": "java/zulufx17-jdk"
+  },
+  "url": "https://github.com/dem2k/solitaire/releases/download/v0.0.0/solitaire.zip",
+  "hash": "0",
+  "persist": "config",
+  "post_install": "\"@SET VAR1=KEY1`n@SET VAR2=KEY2\" | out-file $persist_dir/config/properties.bat -encoding ascii",
+  "bin": "solitaire.bat",
+  "checkver": "github",
+  "autoupdate": {
+    "url": "https://github.com/dem2k/solitaire/releases/download/v$version/solitaire.zip"
+  }
+}
