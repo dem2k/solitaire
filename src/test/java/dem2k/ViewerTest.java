@@ -17,8 +17,8 @@ class ViewerTest {
         Move move = new Move(2, 4, MoveDirection.RIGHT);
         viewer.move(move);
 
-        assertEquals(FieldType.STONE, field.getFeld(4, 4));
-        assertEquals(FieldType.EMPTY, field.getFeld(2, 4));
+        assertEquals(PegType.STONE, field.getFeld(4, 4));
+        assertEquals(PegType.EMPTY, field.getFeld(2, 4));
     }
 
     @Test
@@ -30,8 +30,8 @@ class ViewerTest {
         Move move = new Move(6, 4, MoveDirection.LEFT);
         viewer.move(move);
 
-        assertEquals(FieldType.STONE, field.getFeld(4, 4));
-        assertEquals(FieldType.EMPTY, field.getFeld(6, 4));
+        assertEquals(PegType.STONE, field.getFeld(4, 4));
+        assertEquals(PegType.EMPTY, field.getFeld(6, 4));
     }
 
     @Test
@@ -43,8 +43,8 @@ class ViewerTest {
         Move move = new Move(4, 2, MoveDirection.DOWN);
         viewer.move(move);
 
-        assertEquals(FieldType.STONE, field.getFeld(4, 4));
-        assertEquals(FieldType.EMPTY, field.getFeld(4, 2));
+        assertEquals(PegType.STONE, field.getFeld(4, 4));
+        assertEquals(PegType.EMPTY, field.getFeld(4, 2));
     }
 
     @Test
@@ -56,8 +56,8 @@ class ViewerTest {
         Move move = new Move(4, 6, MoveDirection.UP);
         viewer.move(move);
 
-        assertEquals(FieldType.STONE, field.getFeld(4, 4));
-        assertEquals(FieldType.EMPTY, field.getFeld(4, 6));
+        assertEquals(PegType.STONE, field.getFeld(4, 4));
+        assertEquals(PegType.EMPTY, field.getFeld(4, 6));
     }
 
 }

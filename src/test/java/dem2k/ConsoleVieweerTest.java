@@ -10,7 +10,7 @@ class ConsoleVieweerTest {
     void show() {
         GameField field = GameField.initial();
         Viewer view = new ConsoleVieweer(field, config);
-        field.setFeld(2, 4, FieldType.MOVEMENT);
+        field.setFeld(2, 4, PegType.MOVEMENT);
         view.show();
     }
 }

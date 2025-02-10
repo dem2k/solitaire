@@ -28,37 +28,37 @@ public class GameField {
 
     // 1-based coordinates!
 
-    public FieldType getFeld(int x, int y) {
-        return FieldType.ofType(field[y * rows + x]);
+    public PegType getFeld(int x, int y) {
+        return PegType.ofType(field[y * rows + x]);
     }
 
-    public void setFeld(int x, int y, FieldType value) {
+    public void setFeld(int x, int y, PegType value) {
         field[y * rows + x] = value.type();
     }
 
     public boolean canJumpRight(int x, int y) {
         checkOutOfBounds(x, y);
-        return field[y * rows + x] == FieldType.STONE.type()
-                && field[y * rows + x + 1] == FieldType.STONE.type() && field[y * rows + x + 2] == FieldType.EMPTY.type();
+        return field[y * rows + x] == PegType.STONE.type()
+               && field[y * rows + x + 1] == PegType.STONE.type() && field[y * rows + x + 2] == PegType.EMPTY.type();
     }
 
     public boolean canJumpLeft(int x, int y) {
         checkOutOfBounds(x, y);
-        return field[y * rows + x] == FieldType.STONE.type()
-                && field[y * rows + x - 1] == FieldType.STONE.type() && field[y * rows + x - 2] == FieldType.EMPTY.type();
+        return field[y * rows + x] == PegType.STONE.type()
+               && field[y * rows + x - 1] == PegType.STONE.type() && field[y * rows + x - 2] == PegType.EMPTY.type();
 
     }
 
     public boolean canJumpDown(int x, int y) {
         checkOutOfBounds(x, y);
-        return field[y * rows + x] == FieldType.STONE.type()
-                && field[(y + 1) * rows + x] == FieldType.STONE.type() && field[(y + 2) * rows + x] == FieldType.EMPTY.type();
+        return field[y * rows + x] == PegType.STONE.type()
+               && field[(y + 1) * rows + x] == PegType.STONE.type() && field[(y + 2) * rows + x] == PegType.EMPTY.type();
     }
 
     public boolean canJumpUp(int x, int y) {
         checkOutOfBounds(x, y);
-        return field[y * rows + x] == FieldType.STONE.type()
-                && field[(y - 1) * rows + x] == FieldType.STONE.type() && field[(y - 2) * rows + x] == FieldType.EMPTY.type();
+        return field[y * rows + x] == PegType.STONE.type()
+               && field[(y - 1) * rows + x] == PegType.STONE.type() && field[(y - 2) * rows + x] == PegType.EMPTY.type();
 
     }
 

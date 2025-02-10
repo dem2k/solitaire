@@ -1,12 +1,12 @@
 package dem2k;
 
-public enum FieldType {
+public enum PegType {
 
     EMPTY(0), BORDER(-1), STONE(1), MOVEMENT(9), ERASED(7), ERASED2(8);
 
     private final int type;
 
-    FieldType(int type) {
+    PegType(int type) {
         this.type = type;
     }
 
@@ -14,8 +14,8 @@ public enum FieldType {
         return type;
     }
 
-    public static FieldType ofType(int type) {
-        for (FieldType value : values()) {
+    public static PegType ofType(int type) {
+        for (PegType value : values()) {
             if (value.type == type) {
                 return value;
             }
