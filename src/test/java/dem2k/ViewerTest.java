@@ -10,7 +10,7 @@ class ViewerTest {
 
     @Test
     void jump_right() {
-        GameField field = GameField.initial();
+        GameField field = GameField.english();
         Viewer viewer = new ConsoleVieweer(field, config);
         viewer.show();
 
@@ -23,7 +23,7 @@ class ViewerTest {
 
     @Test
     void jump_left() {
-        GameField field = GameField.initial();
+        GameField field = GameField.english();
         Viewer viewer = new ConsoleVieweer(field, config);
         viewer.show();
 
@@ -36,7 +36,7 @@ class ViewerTest {
 
     @Test
     void jump_down() {
-        GameField field = GameField.initial();
+        GameField field = GameField.english();
         Viewer viewer = new ConsoleVieweer(field, config);
         viewer.show();
 
@@ -49,7 +49,7 @@ class ViewerTest {
 
     @Test
     void jump_up() {
-        GameField field = GameField.initial();
+        GameField field = GameField.english();
         Viewer viewer = new ConsoleVieweer(field, config);
         viewer.show();
 

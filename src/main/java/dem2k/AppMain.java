@@ -28,7 +28,7 @@ public class AppMain {
     }
 
     private void runWithConfig(AppConfig config) {
-        GameField field = GameField.initial();
+        GameField field = GameField.european();
         Viewer viewer = new ConsoleVieweer(field, config);
         Strategy strategy = new TestStrategy(field, config);
         Game game = new Game(field, viewer, strategy, config);
