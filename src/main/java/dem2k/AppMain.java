@@ -31,7 +31,7 @@ public class AppMain {
         GameField field = GameField.european();
         Viewer viewer = new ConsoleVieweer(field, config);
         Strategy strategy = new TestStrategy(field, config);
-        Game game = new Game(field, viewer, strategy, config);
+        GameController game = new GameController(field, viewer, strategy, config);
         game.start();
     }
 

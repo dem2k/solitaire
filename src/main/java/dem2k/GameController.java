@@ -1,13 +1,13 @@
 package dem2k;
 
-public class Game {
+public class GameController {
 
     private final GameField field;
     private final Viewer viewer;
     private final Strategy strategy;
     private final AppConfig config;
 
-    public Game(GameField field, Viewer viewer, Strategy strategy, AppConfig config) {
+    public GameController(GameField field, Viewer viewer, Strategy strategy, AppConfig config) {
         this.field = field;
         this.viewer = viewer;
         this.strategy = strategy;
