@@ -2,8 +2,8 @@ package dem2k;
 
 import picocli.CommandLine;
 
-@CommandLine.Command(name = "solitaire", mixinStandardHelpOptions = true, version = "v0.1.1-SNAPSHOT",
-        description = "this_is_a_simple_but_powerful_foobar_command")
+@CommandLine.Command(name = "solitaire", mixinStandardHelpOptions = true, version = "v0.1.2-SNAPSHOT",
+        description = "Peg Solitaire Game")
 public class AppMain {
 
     @CommandLine.Option(names = "-d", description = "Delay between Frames", required = false)
