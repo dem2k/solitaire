@@ -1,5 +1,15 @@
 package dem2k;
 
+import static dem2k.MoveDirection.DOWN;
+import static dem2k.MoveDirection.LEFT;
+import static dem2k.MoveDirection.RIGHT;
+import static dem2k.MoveDirection.UP;
+import static dem2k.PegType.EMPTY;
+import static dem2k.PegType.ERASED;
+import static dem2k.PegType.ERASED2;
+import static dem2k.PegType.MOVEMENT;
+import static dem2k.PegType.STONE;
+
 public class ConsoleVieweer implements Viewer {
 
     private static final String ERASE_LINE = "\033[K";
@@ -31,16 +41,16 @@ public class ConsoleVieweer implements Viewer {
 
     @Override
     public void move(Move move) {
-        if (move.direction() == MoveDirection.LEFT) {
+        if (move.direction() == LEFT) {
             moveLeft(move.x(), move.y());
         }
-        if (move.direction() == MoveDirection.RIGHT) {
+        if (move.direction() == RIGHT) {
             moveRight(move.x(), move.y());
         }
-        if (move.direction() == MoveDirection.UP) {
+        if (move.direction() == UP) {
             moveUp(move.x(), move.y());
         }
-        if (move.direction() == MoveDirection.DOWN) {
+        if (move.direction() == DOWN) {
             moveDown(move.x(), move.y());
         }
     }
@@ -73,74 +83,74 @@ public class ConsoleVieweer implements Viewer {
     }
 
     public void moveDown(int x, int y) {
-        field.setFeld(x, y, PegType.MOVEMENT);
+        field.setFeld(x, y, MOVEMENT);
         show();
-        field.setFeld(x, y, PegType.EMPTY);
-        field.setFeld(x, y + 1, PegType.MOVEMENT);
+        field.setFeld(x, y, EMPTY);
+        field.setFeld(x, y + 1, MOVEMENT);
         show();
-        field.setFeld(x, y + 1, PegType.ERASED);
-        field.setFeld(x, y + 2, PegType.MOVEMENT);
+        field.setFeld(x, y + 1, ERASED);
+        field.setFeld(x, y + 2, MOVEMENT);
         show();
-        field.setFeld(x, y + 1, PegType.ERASED2);
+        field.setFeld(x, y + 1, ERASED2);
         show();
-        field.setFeld(x, y + 1, PegType.EMPTY);
-        field.setFeld(x, y + 2, PegType.MOVEMENT);
+        field.setFeld(x, y + 1, EMPTY);
+        field.setFeld(x, y + 2, MOVEMENT);
         show();
-        field.setFeld(x, y + 2, PegType.STONE);
+        field.setFeld(x, y + 2, STONE);
         show();
     }
 
     public void moveUp(int x, int y) {
-        field.setFeld(x, y, PegType.MOVEMENT);
+        field.setFeld(x, y, MOVEMENT);
         show();
-        field.setFeld(x, y, PegType.EMPTY);
-        field.setFeld(x, y - 1, PegType.MOVEMENT);
+        field.setFeld(x, y, EMPTY);
+        field.setFeld(x, y - 1, MOVEMENT);
         show();
-        field.setFeld(x, y - 1, PegType.ERASED);
-        field.setFeld(x, y - 2, PegType.MOVEMENT);
+        field.setFeld(x, y - 1, ERASED);
+        field.setFeld(x, y - 2, MOVEMENT);
         show();
-        field.setFeld(x, y - 1, PegType.ERASED2);
+        field.setFeld(x, y - 1, ERASED2);
         show();
-        field.setFeld(x, y - 1, PegType.EMPTY);
-        field.setFeld(x, y - 2, PegType.MOVEMENT);
+        field.setFeld(x, y - 1, EMPTY);
+        field.setFeld(x, y - 2, MOVEMENT);
         show();
-        field.setFeld(x, y - 2, PegType.STONE);
+        field.setFeld(x, y - 2, STONE);
         show();
     }
 
     public void moveRight(int x, int y) {
-        field.setFeld(x, y, PegType.MOVEMENT);
+        field.setFeld(x, y, MOVEMENT);
         show();
-        field.setFeld(x, y, PegType.EMPTY);
-        field.setFeld(x + 1, y, PegType.MOVEMENT);
+        field.setFeld(x, y, EMPTY);
+        field.setFeld(x + 1, y, MOVEMENT);
         show();
-        field.setFeld(x + 1, y, PegType.ERASED);
-        field.setFeld(x + 2, y, PegType.MOVEMENT);
+        field.setFeld(x + 1, y, ERASED);
+        field.setFeld(x + 2, y, MOVEMENT);
         show();
-        field.setFeld(x + 1, y, PegType.ERASED2);
+        field.setFeld(x + 1, y, ERASED2);
         show();
-        field.setFeld(x + 1, y, PegType.EMPTY);
-        field.setFeld(x + 2, y, PegType.MOVEMENT);
+        field.setFeld(x + 1, y, EMPTY);
+        field.setFeld(x + 2, y, MOVEMENT);
         show();
-        field.setFeld(x + 2, y, PegType.STONE);
+        field.setFeld(x + 2, y, STONE);
         show();
     }
 
     public void moveLeft(int x, int y) {
-        field.setFeld(x, y, PegType.MOVEMENT);
+        field.setFeld(x, y, MOVEMENT);
         show();
-        field.setFeld(x, y, PegType.EMPTY);
-        field.setFeld(x - 1, y, PegType.MOVEMENT);
+        field.setFeld(x, y, EMPTY);
+        field.setFeld(x - 1, y, MOVEMENT);
         show();
-        field.setFeld(x - 1, y, PegType.ERASED);
-        field.setFeld(x - 2, y, PegType.MOVEMENT);
+        field.setFeld(x - 1, y, ERASED);
+        field.setFeld(x - 2, y, MOVEMENT);
         show();
-        field.setFeld(x - 1, y, PegType.ERASED2);
+        field.setFeld(x - 1, y, ERASED2);
         show();
-        field.setFeld(x - 1, y, PegType.EMPTY);
-        field.setFeld(x - 2, y, PegType.MOVEMENT);
+        field.setFeld(x - 1, y, EMPTY);
+        field.setFeld(x - 2, y, MOVEMENT);
         show();
-        field.setFeld(x - 2, y, PegType.STONE);
+        field.setFeld(x - 2, y, STONE);
         show();
     }
 

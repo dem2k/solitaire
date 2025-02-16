@@ -20,16 +20,16 @@ public class TestStrategy implements Strategy {
     public Move getNextMove() {
         for (int x = 1; x < field.rows(); x++) {
             for (int y = 1; y < field.cols(); y++) {
-                if (field.canJumpLeft(x, y)) {
+                if (field.canJump(x, y, LEFT)) {
                     return new Move(x, y, LEFT);
                 }
-                if (field.canJumpRight(x, y)) {
+                if (field.canJump(x, y, RIGHT)) {
                     return new Move(x, y, RIGHT);
                 }
-                if (field.canJumpUp(x, y)) {
+                if (field.canJump(x, y, UP)) {
                     return new Move(x, y, UP);
                 }
-                if (field.canJumpDown(x, y)) {
+                if (field.canJump(x, y, DOWN)) {
                     return new Move(x, y, DOWN);
                 }
             }
@@ -41,8 +41,8 @@ public class TestStrategy implements Strategy {
     public boolean hasNextMove() {
         for (int x = 1; x < field.rows(); x++) {
             for (int y = 1; y < field.cols(); y++) {
-                if (field.canJumpLeft(x, y) || field.canJumpRight(x, y)
-                        || field.canJumpDown(x, y) || field.canJumpUp(x, y)) {
+                if (field.canJump(x, y, LEFT) || field.canJump(x, y, RIGHT)
+                        || field.canJump(x, y, DOWN) || field.canJump(x, y, UP)) {
                     return true;
                 }
             }

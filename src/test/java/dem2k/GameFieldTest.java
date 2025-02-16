@@ -30,15 +30,15 @@ class GameFieldTest {
     @Test
     void test_can_jump_right() {
         GameField zstd = GameField.english();
-        assertTrue(zstd.canJumpRight(2, 4));
-        assertFalse(zstd.canJumpLeft(2, 4));
+        assertTrue(zstd.canJump(2, 4,MoveDirection.RIGHT));
+        assertFalse(zstd.canJump(2, 4, MoveDirection.LEFT));
     }
 
     @Test
     void test_can_jump_left() {
         GameField zstd = GameField.english();
-        assertTrue(zstd.canJumpLeft(6, 4));
-        assertFalse(zstd.canJumpRight(6, 4));
+        assertTrue(zstd.canJump(6, 4, MoveDirection.LEFT));
+        assertFalse(zstd.canJump(6, 4, MoveDirection.RIGHT));
     }
 
     @Test
@@ -80,15 +80,15 @@ class GameFieldTest {
     @Test
     void test_can_jump_up() {
         GameField field = GameField.english();
-        assertTrue(field.canJumpUp(4, 6));
-        assertFalse(field.canJumpDown(4, 6));
+        assertTrue(field.canJump(4, 6, MoveDirection.UP));
+        assertFalse(field.canJump(4, 6, MoveDirection.DOWN));
     }
 
     @Test
     void test_can_jump_down() {
         GameField field = GameField.english();
-        assertTrue(field.canJumpDown(4, 2));
-        assertFalse(field.canJumpUp(4, 2));
+        assertTrue(field.canJump(4, 2, MoveDirection.DOWN));
+        assertFalse(field.canJump(4, 2, MoveDirection.UP));
     }
 
     @Test

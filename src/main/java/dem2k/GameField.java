@@ -52,28 +52,44 @@ public class GameField {
         field[y * rows + x] = value.type();
     }
 
-    public boolean canJumpRight(int x, int y) {
-        checkOutOfBounds(x, y);
-        return field[y * rows + x] == PegType.STONE.type()
-               && field[y * rows + x + 1] == PegType.STONE.type() && field[y * rows + x + 2] == PegType.EMPTY.type();
+    public boolean canJump(int x, int y, MoveDirection move) {
+        if (move == MoveDirection.LEFT) {
+            return canJumpLeft(x, y);
+        }
+        if (move == MoveDirection.RIGHT) {
+            return canJumpRight(x, y);
+        }
+        if (move == MoveDirection.UP) {
+            return canJumpUp(x, y);
+        }
+        if (move == MoveDirection.DOWN) {
+            return canJumpDown(x, y);
+        }
+        throw new IllegalArgumentException("Unknown Move: " + move.toString());
     }
 
-    public boolean canJumpLeft(int x, int y) {
+    private boolean canJumpRight(int x, int y) {
         checkOutOfBounds(x, y);
         return field[y * rows + x] == PegType.STONE.type()
-               && field[y * rows + x - 1] == PegType.STONE.type() && field[y * rows + x - 2] == PegType.EMPTY.type();
+                && field[y * rows + x + 1] == PegType.STONE.type() && field[y * rows + x + 2] == PegType.EMPTY.type();
     }
 
-    public boolean canJumpDown(int x, int y) {
+    private boolean canJumpLeft(int x, int y) {
         checkOutOfBounds(x, y);
         return field[y * rows + x] == PegType.STONE.type()
-               && field[(y + 1) * rows + x] == PegType.STONE.type() && field[(y + 2) * rows + x] == PegType.EMPTY.type();
+                && field[y * rows + x - 1] == PegType.STONE.type() && field[y * rows + x - 2] == PegType.EMPTY.type();
     }
 
-    public boolean canJumpUp(int x, int y) {
+    private boolean canJumpDown(int x, int y) {
         checkOutOfBounds(x, y);
         return field[y * rows + x] == PegType.STONE.type()
-               && field[(y - 1) * rows + x] == PegType.STONE.type() && field[(y - 2) * rows + x] == PegType.EMPTY.type();
+                && field[(y + 1) * rows + x] == PegType.STONE.type() && field[(y + 2) * rows + x] == PegType.EMPTY.type();
+    }
+
+    private boolean canJumpUp(int x, int y) {
+        checkOutOfBounds(x, y);
+        return field[y * rows + x] == PegType.STONE.type()
+                && field[(y - 1) * rows + x] == PegType.STONE.type() && field[(y - 2) * rows + x] == PegType.EMPTY.type();
     }
 
     public void jumpRight(int x, int y) {
@@ -110,6 +126,13 @@ public class GameField {
         }
     }
 
+    public int rows() {
+        return rows;
+    }
+
+    public int cols() {
+        return cols;
+    }
 
     @Override
     public String toString() {
@@ -122,13 +145,5 @@ public class GameField {
             result.append(String.format("%3d", field[i]));
         }
         return result.toString();
-    }
-
-    public int rows() {
-        return rows;
-    }
-
-    public int cols() {
-        return cols;
     }
 }
