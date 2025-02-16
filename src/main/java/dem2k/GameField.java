@@ -62,7 +62,6 @@ public class GameField {
         checkOutOfBounds(x, y);
         return field[y * rows + x] == PegType.STONE.type()
                && field[y * rows + x - 1] == PegType.STONE.type() && field[y * rows + x - 2] == PegType.EMPTY.type();
-
     }
 
     public boolean canJumpDown(int x, int y) {
@@ -75,7 +74,6 @@ public class GameField {
         checkOutOfBounds(x, y);
         return field[y * rows + x] == PegType.STONE.type()
                && field[(y - 1) * rows + x] == PegType.STONE.type() && field[(y - 2) * rows + x] == PegType.EMPTY.type();
-
     }
 
     public void jumpRight(int x, int y) {
