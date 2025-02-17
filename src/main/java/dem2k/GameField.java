@@ -134,6 +134,25 @@ public class GameField {
         return cols;
     }
 
+public boolean checkWin() {
+    // Prüfe ob genau ein Stein in der Mitte liegt (Position 4,4 = 4 * 9 + 4 = 40)
+    if (field[40] != PegType.STONE.type()) {
+        return false;
+    }
+    
+    // Prüfe das gesamte Array auf weitere Steine
+    for (int i = 0; i < field.length; i++) {
+        // Überspringe das Mittelfeld
+        if (i == 40) {
+            continue;
+        }
+        if (field[i] == PegType.STONE.type()) {
+            return false;
+        }
+    }
+    return true;
+}
+    
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
