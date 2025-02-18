@@ -18,10 +18,14 @@ public class GameController {
         viewer.show();
         while (strategy.hasNextMove()) {
             Move move = strategy.getNextMove();
-            viewer.move(move);
+            viewer.animateMove(move);
             viewer.show();
         }
-        //TODO check win.
+
+        if (field.checkWin()) {
+            System.out.println("Congrats! You won!");
+        }
+        System.out.println("\n");
     }
 
 }

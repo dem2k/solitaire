@@ -2,7 +2,7 @@ package dem2k;
 
 public enum PegType {
 
-    EMPTY(0), BORDER(-1), STONE(1), MOVEMENT(9), ERASED(7), ERASED2(8);
+    EMPTY(0), BORDER(-1), STONE(1), MOVEMENT(9), ERASED(7); //, ERASED2(8);
 
     private final int type;
 

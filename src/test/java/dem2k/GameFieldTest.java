@@ -8,9 +8,10 @@ import org.junit.jupiter.api.Test;
 
 class GameFieldTest {
 
+    private final GameField field = GameField.english();
+
     @Test
     void test_english() {
-        GameField field = GameField.english();
         assertEquals(PegType.EMPTY, field.getFeld(4, 4));
         assertEquals(PegType.BORDER, field.getFeld(1, 1));
         assertEquals(PegType.BORDER, field.getFeld(2, 2));
@@ -21,29 +22,25 @@ class GameFieldTest {
 
     @Test
     void test_get_feld() {
-        GameField zstd = GameField.english();
-        assertEquals(PegType.BORDER, zstd.getFeld(1, 1));
-        assertEquals(PegType.STONE, zstd.getFeld(3, 1));
-        assertEquals(PegType.EMPTY, zstd.getFeld(4, 4));
+        assertEquals(PegType.BORDER, field.getFeld(1, 1));
+        assertEquals(PegType.STONE, field.getFeld(3, 1));
+        assertEquals(PegType.EMPTY, field.getFeld(4, 4));
     }
 
     @Test
     void test_can_jump_right() {
-        GameField zstd = GameField.english();
-        assertTrue(zstd.canJump(2, 4,MoveDirection.RIGHT));
-        assertFalse(zstd.canJump(2, 4, MoveDirection.LEFT));
+        assertTrue(field.canJump(2, 4,MoveDirection.RIGHT));
+        assertFalse(field.canJump(2, 4, MoveDirection.LEFT));
     }
 
     @Test
     void test_can_jump_left() {
-        GameField zstd = GameField.english();
-        assertTrue(zstd.canJump(6, 4, MoveDirection.LEFT));
-        assertFalse(zstd.canJump(6, 4, MoveDirection.RIGHT));
+        assertTrue(field.canJump(6, 4, MoveDirection.LEFT));
+        assertFalse(field.canJump(6, 4, MoveDirection.RIGHT));
     }
 
     @Test
     void test_jump_left() {
-        GameField field = GameField.english();
         field.jumpLeft(6, 4);
         assertEquals(PegType.EMPTY, field.getFeld(5, 4));
         assertEquals(PegType.EMPTY, field.getFeld(6, 4));
@@ -52,7 +49,6 @@ class GameFieldTest {
 
     @Test
     void test_jump_right() {
-        GameField field = GameField.english();
         field.jumpRight(2, 4);
         assertEquals(PegType.EMPTY, field.getFeld(2, 4));
         assertEquals(PegType.EMPTY, field.getFeld(3, 4));
@@ -61,7 +57,6 @@ class GameFieldTest {
 
     @Test
     void test_jump_up() {
-        GameField field = GameField.english();
         field.jumpUp(4, 6);
         assertEquals(PegType.EMPTY, field.getFeld(4, 6));
         assertEquals(PegType.EMPTY, field.getFeld(4, 5));
@@ -70,7 +65,6 @@ class GameFieldTest {
 
     @Test
     void test_jump_down() {
-        GameField field = GameField.english();
         field.jumpDown(4, 2);
         assertEquals(PegType.EMPTY, field.getFeld(4, 2));
         assertEquals(PegType.EMPTY, field.getFeld(4, 3));
@@ -79,23 +73,35 @@ class GameFieldTest {
 
     @Test
     void test_can_jump_up() {
-        GameField field = GameField.english();
         assertTrue(field.canJump(4, 6, MoveDirection.UP));
         assertFalse(field.canJump(4, 6, MoveDirection.DOWN));
     }
 
     @Test
     void test_can_jump_down() {
-        GameField field = GameField.english();
         assertTrue(field.canJump(4, 2, MoveDirection.DOWN));
         assertFalse(field.canJump(4, 2, MoveDirection.UP));
     }
 
     @Test
     void test_set_feld() {
-        GameField field = GameField.english();
         field.setFeld(4, 4, PegType.MOVEMENT);
         assertEquals(PegType.MOVEMENT, field.getFeld(4, 4));
+    }
+
+    @Test
+    void test_check_win() {
+        // Setze alle Felder auf EMPTY außer Ränder und Mittelpunkt
+        for (int y = 1; y < field.rows() - 1; y++) {
+            for (int x = 1; x < field.cols() - 1; x++) {
+                if (x == 4 && y == 4) continue;
+                field.setFeld(x, y, PegType.EMPTY);
+            }
+        }
+        // Setze Mittelfeld auf STONE
+        field.setFeld(4, 4, PegType.STONE);
+
+        assertTrue(field.checkWin());
     }
 
 }

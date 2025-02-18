@@ -6,7 +6,6 @@ import static dem2k.MoveDirection.RIGHT;
 import static dem2k.MoveDirection.UP;
 import static dem2k.PegType.EMPTY;
 import static dem2k.PegType.ERASED;
-import static dem2k.PegType.ERASED2;
 import static dem2k.PegType.MOVEMENT;
 import static dem2k.PegType.STONE;
 
@@ -40,19 +39,26 @@ public class ConsoleVieweer implements Viewer {
     }
 
     @Override
-    public void move(Move move) {
-        if (move.direction() == LEFT) {
-            moveLeft(move.x(), move.y());
+    public void animateMove(Move move) {
+        switch (move.direction()) {
+            case LEFT:
+                moveLeft(move.x(), move.y());
+                break;
+            case RIGHT:
+                moveRight(move.x(), move.y());
+                break;
+            case UP:
+                moveUp(move.x(), move.y());
+                break;
+            case DOWN:
+                moveDown(move.x(), move.y());
+                break;
+            case NOPE:
+                break;
+            default:
+                throw new IllegalArgumentException("Unknown Move: " + move.direction());
         }
-        if (move.direction() == RIGHT) {
-            moveRight(move.x(), move.y());
-        }
-        if (move.direction() == UP) {
-            moveUp(move.x(), move.y());
-        }
-        if (move.direction() == DOWN) {
-            moveDown(move.x(), move.y());
-        }
+        
     }
 
     private void sleep() {
@@ -76,8 +82,6 @@ public class ConsoleVieweer implements Viewer {
                 return '*';
             case ERASED:
                 return 'x';
-            case ERASED2:
-                return '+';
         }
         return '?';
     }
@@ -91,8 +95,8 @@ public class ConsoleVieweer implements Viewer {
         field.setFeld(x, y + 1, ERASED);
         field.setFeld(x, y + 2, MOVEMENT);
         show();
-        field.setFeld(x, y + 1, ERASED2);
-        show();
+//        field.setFeld(x, y + 1, ERASED2);
+//        show();
         field.setFeld(x, y + 1, EMPTY);
         field.setFeld(x, y + 2, MOVEMENT);
         show();
@@ -109,8 +113,8 @@ public class ConsoleVieweer implements Viewer {
         field.setFeld(x, y - 1, ERASED);
         field.setFeld(x, y - 2, MOVEMENT);
         show();
-        field.setFeld(x, y - 1, ERASED2);
-        show();
+//        field.setFeld(x, y - 1, ERASED2);
+//        show();
         field.setFeld(x, y - 1, EMPTY);
         field.setFeld(x, y - 2, MOVEMENT);
         show();
@@ -127,8 +131,8 @@ public class ConsoleVieweer implements Viewer {
         field.setFeld(x + 1, y, ERASED);
         field.setFeld(x + 2, y, MOVEMENT);
         show();
-        field.setFeld(x + 1, y, ERASED2);
-        show();
+//        field.setFeld(x + 1, y, ERASED2);
+//        show();
         field.setFeld(x + 1, y, EMPTY);
         field.setFeld(x + 2, y, MOVEMENT);
         show();
@@ -145,8 +149,8 @@ public class ConsoleVieweer implements Viewer {
         field.setFeld(x - 1, y, ERASED);
         field.setFeld(x - 2, y, MOVEMENT);
         show();
-        field.setFeld(x - 1, y, ERASED2);
-        show();
+//        field.setFeld(x - 1, y, ERASED2);
+//        show();
         field.setFeld(x - 1, y, EMPTY);
         field.setFeld(x - 2, y, MOVEMENT);
         show();
