@@ -23,4 +23,11 @@ public class Move {
     public MoveDirection direction() {
         return moveDirection;
     }
+
+    @Override
+    public String toString() {
+        return "Move{" +
+                "x=" + x +
+                ", y=" + y + ", " + moveDirection + '}';
+    }
 }

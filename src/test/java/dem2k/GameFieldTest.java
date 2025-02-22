@@ -29,19 +29,19 @@ class GameFieldTest {
 
     @Test
     void test_can_jump_right() {
-        assertTrue(field.canJump(2, 4,MoveDirection.RIGHT));
-        assertFalse(field.canJump(2, 4, MoveDirection.LEFT));
+        assertTrue(field.canMove(2, 4,MoveDirection.RIGHT));
+        assertFalse(field.canMove(2, 4, MoveDirection.LEFT));
     }
 
     @Test
     void test_can_jump_left() {
-        assertTrue(field.canJump(6, 4, MoveDirection.LEFT));
-        assertFalse(field.canJump(6, 4, MoveDirection.RIGHT));
+        assertTrue(field.canMove(6, 4, MoveDirection.LEFT));
+        assertFalse(field.canMove(6, 4, MoveDirection.RIGHT));
     }
 
     @Test
     void test_jump_left() {
-        field.jumpLeft(6, 4);
+        field.move(new Move(6, 4, MoveDirection.LEFT));
         assertEquals(PegType.EMPTY, field.getFeld(5, 4));
         assertEquals(PegType.EMPTY, field.getFeld(6, 4));
         assertEquals(PegType.STONE, field.getFeld(4, 4));
@@ -49,7 +49,7 @@ class GameFieldTest {
 
     @Test
     void test_jump_right() {
-        field.jumpRight(2, 4);
+        field.move(new Move(2, 4, MoveDirection.RIGHT));
         assertEquals(PegType.EMPTY, field.getFeld(2, 4));
         assertEquals(PegType.EMPTY, field.getFeld(3, 4));
         assertEquals(PegType.STONE, field.getFeld(4, 4));
@@ -57,7 +57,7 @@ class GameFieldTest {
 
     @Test
     void test_jump_up() {
-        field.jumpUp(4, 6);
+        field.move(new Move(4, 6, MoveDirection.UP));
         assertEquals(PegType.EMPTY, field.getFeld(4, 6));
         assertEquals(PegType.EMPTY, field.getFeld(4, 5));
         assertEquals(PegType.STONE, field.getFeld(4, 4));
@@ -65,7 +65,7 @@ class GameFieldTest {
 
     @Test
     void test_jump_down() {
-        field.jumpDown(4, 2);
+        field.move(new Move(4, 2, MoveDirection.DOWN));
         assertEquals(PegType.EMPTY, field.getFeld(4, 2));
         assertEquals(PegType.EMPTY, field.getFeld(4, 3));
         assertEquals(PegType.STONE, field.getFeld(4, 4));
@@ -73,14 +73,14 @@ class GameFieldTest {
 
     @Test
     void test_can_jump_up() {
-        assertTrue(field.canJump(4, 6, MoveDirection.UP));
-        assertFalse(field.canJump(4, 6, MoveDirection.DOWN));
+        assertTrue(field.canMove(4, 6, MoveDirection.UP));
+        assertFalse(field.canMove(4, 6, MoveDirection.DOWN));
     }
 
     @Test
     void test_can_jump_down() {
-        assertTrue(field.canJump(4, 2, MoveDirection.DOWN));
-        assertFalse(field.canJump(4, 2, MoveDirection.UP));
+        assertTrue(field.canMove(4, 2, MoveDirection.DOWN));
+        assertFalse(field.canMove(4, 2, MoveDirection.UP));
     }
 
     @Test

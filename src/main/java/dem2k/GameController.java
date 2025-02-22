@@ -18,7 +18,8 @@ public class GameController {
         viewer.show();
         while (strategy.hasNextMove()) {
             Move move = strategy.getNextMove();
-            viewer.animateMove(move);
+            viewer.animate(move);
+            field.move(move);
             viewer.show();
         }
 

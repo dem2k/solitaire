@@ -1,9 +1,5 @@
 package dem2k;
 
-import static dem2k.MoveDirection.DOWN;
-import static dem2k.MoveDirection.LEFT;
-import static dem2k.MoveDirection.RIGHT;
-import static dem2k.MoveDirection.UP;
 import static dem2k.PegType.EMPTY;
 import static dem2k.PegType.ERASED;
 import static dem2k.PegType.MOVEMENT;
@@ -15,7 +11,7 @@ public class ConsoleVieweer implements Viewer {
     private static final String HOME_POS00 = "\033[0;0H"; //POS 0,0
     private static final String CLEAR_SCRN = "\033[2J"; // CLS  Oder? "\033[H\033[2J";
 
-    private final GameField field;
+    private GameField field;
     private final AppConfig config;
 
     public ConsoleVieweer(GameField field, AppConfig config) {
@@ -39,7 +35,10 @@ public class ConsoleVieweer implements Viewer {
     }
 
     @Override
-    public void animateMove(Move move) {
+    public void animate(Move move) {
+        // view should not change model?
+        this.field = field.clone();
+        
         switch (move.direction()) {
             case LEFT:
                 moveLeft(move.x(), move.y());
@@ -58,7 +57,6 @@ public class ConsoleVieweer implements Viewer {
             default:
                 throw new IllegalArgumentException("Unknown Move: " + move.direction());
         }
-        
     }
 
     private void sleep() {
@@ -86,7 +84,7 @@ public class ConsoleVieweer implements Viewer {
         return '?';
     }
 
-    public void moveDown(int x, int y) {
+    private void moveDown(int x, int y) {
         field.setFeld(x, y, MOVEMENT);
         show();
         field.setFeld(x, y, EMPTY);
@@ -104,7 +102,7 @@ public class ConsoleVieweer implements Viewer {
         show();
     }
 
-    public void moveUp(int x, int y) {
+    private void moveUp(int x, int y) {
         field.setFeld(x, y, MOVEMENT);
         show();
         field.setFeld(x, y, EMPTY);
@@ -122,7 +120,7 @@ public class ConsoleVieweer implements Viewer {
         show();
     }
 
-    public void moveRight(int x, int y) {
+    private void moveRight(int x, int y) {
         field.setFeld(x, y, MOVEMENT);
         show();
         field.setFeld(x, y, EMPTY);
@@ -140,7 +138,7 @@ public class ConsoleVieweer implements Viewer {
         show();
     }
 
-    public void moveLeft(int x, int y) {
+    private void moveLeft(int x, int y) {
         field.setFeld(x, y, MOVEMENT);
         show();
         field.setFeld(x, y, EMPTY);

@@ -41,6 +41,10 @@ public class GameField {
         };
         return new GameField(initial);
     }
+    
+    public GameField clone(){
+        return new GameField(this.field.clone());
+    }
 
     // 1-based coordinates!
 
@@ -52,68 +56,85 @@ public class GameField {
         field[y * rows + x] = value.type();
     }
 
-    public boolean canJump(int x, int y, MoveDirection move) {
-        if (move == MoveDirection.LEFT) {
-            return canJumpLeft(x, y);
+    public void move(Move move) {
+        switch (move.direction()) {
+            case LEFT:
+                jumpLeft(move.x(), move.y());
+                break;
+            case RIGHT:
+                jumpRight(move.x(), move.y());
+                break;
+            case UP:
+                jumpUp(move.x(), move.y());
+                break;
+            case DOWN:
+                jumpDown(move.x(), move.y());
+                break;
+            default:
+                throw new IllegalArgumentException("Unknown Move: " + move);
         }
-        if (move == MoveDirection.RIGHT) {
-            return canJumpRight(x, y);
+    }
+
+    public boolean canMove(int x, int y, MoveDirection direction) {
+        switch (direction) {
+            case LEFT:
+                return canJumpLeft(x, y);
+            case RIGHT:
+                return canJumpRight(x, y);
+            case UP:
+                return canJumpUp(x, y);
+            case DOWN:
+                return canJumpDown(x, y);
         }
-        if (move == MoveDirection.UP) {
-            return canJumpUp(x, y);
-        }
-        if (move == MoveDirection.DOWN) {
-            return canJumpDown(x, y);
-        }
-        throw new IllegalArgumentException("Unknown Move: " + move.toString());
+        throw new IllegalArgumentException("Unknown Move: " + direction);
     }
 
     private boolean canJumpRight(int x, int y) {
         checkOutOfBounds(x, y);
         return field[y * rows + x] == PegType.STONE.type()
-               && field[y * rows + x + 1] == PegType.STONE.type() && field[y * rows + x + 2] == PegType.EMPTY.type();
+                && field[y * rows + x + 1] == PegType.STONE.type() && field[y * rows + x + 2] == PegType.EMPTY.type();
     }
 
     private boolean canJumpLeft(int x, int y) {
         checkOutOfBounds(x, y);
         return field[y * rows + x] == PegType.STONE.type()
-               && field[y * rows + x - 1] == PegType.STONE.type() && field[y * rows + x - 2] == PegType.EMPTY.type();
+                && field[y * rows + x - 1] == PegType.STONE.type() && field[y * rows + x - 2] == PegType.EMPTY.type();
     }
 
     private boolean canJumpDown(int x, int y) {
         checkOutOfBounds(x, y);
         return field[y * rows + x] == PegType.STONE.type()
-               && field[(y + 1) * rows + x] == PegType.STONE.type() && field[(y + 2) * rows + x] == PegType.EMPTY.type();
+                && field[(y + 1) * rows + x] == PegType.STONE.type() && field[(y + 2) * rows + x] == PegType.EMPTY.type();
     }
 
     private boolean canJumpUp(int x, int y) {
         checkOutOfBounds(x, y);
         return field[y * rows + x] == PegType.STONE.type()
-               && field[(y - 1) * rows + x] == PegType.STONE.type() && field[(y - 2) * rows + x] == PegType.EMPTY.type();
+                && field[(y - 1) * rows + x] == PegType.STONE.type() && field[(y - 2) * rows + x] == PegType.EMPTY.type();
     }
 
-    public void jumpRight(int x, int y) {
+    private void jumpRight(int x, int y) {
         checkOutOfBounds(x, y);
         field[y * rows + x] = 0;
         field[y * rows + x + 1] = 0;
         field[y * rows + x + 2] = 1;
     }
 
-    public void jumpLeft(int x, int y) {
+    private void jumpLeft(int x, int y) {
         checkOutOfBounds(x, y);
         field[y * rows + x] = 0;
         field[y * rows + x - 1] = 0;
         field[y * rows + x - 2] = 1;
     }
 
-    public void jumpUp(int x, int y) {
+    private void jumpUp(int x, int y) {
         checkOutOfBounds(x, y);
         field[y * rows + x] = 0;
         field[(y - 1) * rows + x] = 0;
         field[(y - 2) * rows + x] = 1;
     }
 
-    public void jumpDown(int x, int y) {
+    private void jumpDown(int x, int y) {
         checkOutOfBounds(x, y);
         field[y * rows + x] = 0;
         field[(y + 1) * rows + x] = 0;
@@ -165,4 +186,5 @@ public class GameField {
         }
         return result.toString();
     }
+
 }

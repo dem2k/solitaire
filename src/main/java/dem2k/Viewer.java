@@ -4,6 +4,6 @@ public interface Viewer {
     
     void show();
     
-    void animateMove(Move move);
+    void animate(Move move);
     
 }
