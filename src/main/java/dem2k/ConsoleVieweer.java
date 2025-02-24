@@ -37,7 +37,7 @@ public class ConsoleVieweer implements Viewer {
     @Override
     public void animate(Move move) {
         // view should not change model?
-        this.field = field.clone();
+        //this.field = field.clone();
         
         switch (move.direction()) {
             case LEFT:
